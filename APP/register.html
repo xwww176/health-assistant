@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册 - 健康助手</title>
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+    <div class="auth-container">
+        <h1>健康助手</h1>
+        <form id="register-form">
+            <h2>注册新账号</h2>
+            <div class="form-group">
+                <label for="name">姓名</label>
+                <input type="text" id="name" required minlength="2">
+            </div>
+            <div class="form-group">
+                <label for="email">电子邮箱</label>
+                <input type="email" id="email" required>
+                <div class="error-message" id="email-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="password">密码</label>
+                <input type="password" id="password" required minlength="6">
+                <div class="error-message" id="password-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">确认密码</label>
+                <input type="password" id="confirm-password" required>
+                <div class="error-message" id="confirm-password-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="age">年龄</label>
+                <input type="number" id="age" min="12" max="120" required>
+            </div>
+            <div class="form-group">
+                <label for="height">身高(cm)</label>
+                <input type="number" id="height" min="120" max="250" required>
+            </div>
+            <div class="form-group">
+                <label for="weight">体重(kg)</label>
+                <input type="number" id="weight" min="30" max="300" step="0.1" required>
+            </div>
+            <div class="form-group">
+                <label for="goal">健身目标</label>
+                <select id="goal" required>
+                    <option value="">请选择目标</option>
+                    <option value="weightloss">减脂</option>
+                    <option value="musclegain">增肌</option>
+                    <option value="fitness">塑形</option>
+                </select>
+            </div>
+            <button type="submit">注册</button>
+            <p class="auth-switch">已有账号？<a href="login.html">立即登录</a></p>
+        </form>
+    </div>
+    <script src="js/auth.js"></script>
+</body>
+</html>

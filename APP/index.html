@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个性化健康与健身助手</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="manifest" href="/manifest.json">
+</head>
+<body>
+    <header>
+        <h1>我的健康助手</h1>
+       <nav>
+    <ul>
+        <li><a href="#dashboard">首页</a></li>
+        <li><a href="#workout">锻炼</a></li>
+        <li><a href="#nutrition">营养</a></li>
+        <li><a href="#progress">进度</a></li>
+        <li><a href="#" id="logout-btn">退出</a></li>
+    </ul>
+</nav>
+    </header>
+
+    <main>
+        <section id="dashboard">
+            <h2>健康概览</h2>
+            <div class="stats-container">
+                <div class="stat-card">
+                    <h3>今日步数</h3>
+                    <p id="steps">0</p>
+                    <button class="update-btn" data-target="steps">更新</button>
+                </div>
+                <div class="stat-card">
+                    <h3>消耗卡路里</h3>
+                    <p id="calories">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>饮水量</h3>
+                    <p id="water">0 ml</p>
+                    <div class="water-controls">
+                        <button class="water-btn" data-amount="250">+250ml</button>
+                        <button class="water-btn" data-amount="500">+500ml</button>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <h3>睡眠时间</h3>
+                    <p id="sleep">0 小时</p>
+                    <button class="update-btn" data-target="sleep">记录</button>
+                </div>
+                <div class="stat-card">
+                    <h3>体重</h3>
+                    <p id="weight">0 kg</p>
+                    <button class="update-btn" data-target="weight">记录</button>
+                </div>
+                <div class="stat-card">
+                    <h3>BMI</h3>
+                    <p id="bmi">0</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="user-profile" class="hidden">
+            <h2>创建您的健身计划</h2>
+            <form id="profile-form">
+                <div class="form-group">
+                    <label>年龄</label>
+                    <input type="number" id="age" min="12" max="99" required>
+                </div>
+                <div class="form-group">
+                    <label>身高(cm)</label>
+                    <input type="number" id="height" min="120" max="250" required>
+                </div>
+                <div class="form-group">
+                    <label>体重(kg)</label>
+                    <input type="number" id="weight" min="30" max="200" step="0.1" required>
+                </div>
+                <div class="form-group">
+                    <label>健身目标</label>
+                    <select id="goal" required>
+                        <option value="weightloss">减脂</option>
+                        <option value="musclegain">增肌</option>
+                        <option value="fitness">塑形</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>可用设备</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="equipment" value="none" checked> 无器械</label>
+                        <label><input type="checkbox" name="equipment" value="dumbbell"> 哑铃</label>
+                        <label><input type="checkbox" name="equipment" value="band"> 弹力带</label>
+                    </div>
+                </div>
+                <button type="submit">生成训练计划</button>
+            </form>
+        </section>
+
+        <section id="workout-plan-view" class="hidden">
+            <h2>您的14天训练计划</h2>
+            <button id="check-in-btn" class="check-in-btn">今日打卡</button>
+            <div class="calendar-view" id="workout-calendar"></div>
+            <div class="exercise-details" id="exercise-details"></div>
+        </section>
+
+        <section id="workout" class="hidden">
+            <h2>今日锻炼</h2>
+            <div class="workout-controls">
+                <button id="start-workout">开始锻炼</button>
+                <select id="workout-plan">
+                    <option value="custom">自定义锻炼</option>
+                    <option value="beginner">初学者计划</option>
+                    <option value="weightloss">减脂计划</option>
+                    <option value="strength">力量训练</option>
+                </select>
+            </div>
+            
+            <div id="workout-timer" class="hidden">
+                <div class="timer-display">00:00</div>
+                <div class="timer-controls">
+                    <button id="pause-timer">暂停</button>
+                    <button id="stop-timer">结束</button>
+                </div>
+                <div id="current-exercise"></div>
+            </div>
+            
+            <div id="exercise-list"></div>
+            
+            <div class="add-exercise">
+                <h3>添加自定义练习</h3>
+                <form id="exercise-form">
+                    <input type="text" id="exercise-name" placeholder="练习名称" required>
+                    <div class="exercise-type">
+                        <label>
+                            <input type="radio" name="exercise-type" value="reps" checked>
+                            重复次数
+                        </label>
+                        <label>
+                            <input type="radio" name="exercise-type" value="time">
+                            计时
+                        </label>
+                    </div>
+                    <div id="exercise-reps-field">
+                        <input type="number" id="exercise-sets" placeholder="组数" min="1">
+                        <input type="number" id="exercise-reps" placeholder="次数" min="1">
+                    </div>
+                    <div id="exercise-time-field" class="hidden">
+                        <input type="number" id="exercise-duration" placeholder="持续时间(秒)" min="1">
+                    </div>
+                    <button type="submit">添加练习</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="nutrition" class="hidden">
+            <h2>营养追踪</h2>
+            <form id="food-form">
+                <input type="text" id="food-input" placeholder="输入食物名称">
+                <input type="number" id="calorie-input" placeholder="卡路里">
+                <button type="submit">添加</button>
+            </form>
+            <ul id="food-list"></ul>
+        </section>
+
+        <section id="progress" class="hidden">
+            <h2>我的进度</h2>
+            <div class="progress-controls">
+                <select id="progress-metric">
+                    <option value="steps">步数</option>
+                    <option value="weight">体重</option>
+                    <option value="caloriesBurned">消耗卡路里</option>
+                    <option value="waterIntake">饮水量</option>
+                    <option value="workouts">锻炼次数</option>
+                </select>
+                <select id="progress-period">
+                    <option value="7">最近7天</option>
+                    <option value="30">最近30天</option>
+                    <option value="90">最近3个月</option>
+                    <option value="all">全部数据</option>
+                </select>
+            </div>
+            <canvas id="progress-chart" width="400" height="200"></canvas>
+            
+            <div class="progress-history">
+                <h3>锻炼历史</h3>
+                <ul id="workout-history"></ul>
+            </div>
+        </section>
+    </main>
+
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="modal-title">更新数据</h2>
+            <form id="data-form">
+                <div class="form-group">
+                    <label id="modal-label"></label>
+                    <input type="number" id="modal-input" step="any">
+                </div>
+                <button type="submit">保存</button>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="js/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>

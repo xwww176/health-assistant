@@ -1,0 +1,25 @@
+<svg viewBox="0 0 300 500" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背部 -->
+  <path id="back" d="M150,50 L100,100 L80,150 L90,200 L110,250 L150,280 L190,250 L210,200 L220,150 L200,100 Z" 
+        fill="#e0e0e0" stroke="#333" stroke-width="2"/>
+  
+  <!-- 胸部 -->
+  <path id="chest" d="M150,100 L120,150 L130,200 L150,220 L170,200 L180,150 Z" 
+        fill="#e0e0e0" stroke="#333" stroke-width="2"/>
+  
+  <!-- 肩部 -->
+  <path id="shoulders" d="M150,50 L120,80 L100,100 M150,50 L180,80 L200,100" 
+        stroke="#e0e0e0" stroke-width="15" stroke-linecap="round"/>
+  
+  <!-- 手臂 -->
+  <path id="arms" d="M100,100 L70,150 L60,250 L80,300 M200,100 L230,150 L240,250 L220,300" 
+        stroke="#e0e0e0" stroke-width="20" stroke-linecap="round"/>
+  
+  <!-- 腹部 -->
+  <path id="abs" d="M150,220 L130,250 L135,300 L150,320 L165,300 L170,250 Z" 
+        fill="#e0e0e0" stroke="#333" stroke-width="2"/>
+  
+  <!-- 腿部 -->
+  <path id="legs" d="M135,320 L120,400 L110,480 L130,490 M165,320 L180,400 L190,480 L170,490" 
+        stroke="#e0e0e0" stroke-width="25" stroke-linecap="round"/>
+</svg>
